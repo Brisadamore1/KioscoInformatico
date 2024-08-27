@@ -96,10 +96,51 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 2
             }
                 );
+            //carga de datos semilla de compras
+            modelBuilder.Entity<Compra>().HasData(
+                new Compra
+                {
+                    ID = 1,
+                    FormaDePago = 1,
+                    Iva = 21,
+                    Total = 1000,
+                    Fecha = new DateTime(2021, 5, 15),
+                    ProveedorID = 1
+                },
+                new Compra
+                {
+                    ID = 2,
+                    FormaDePago = 2,
+                    Iva = 10,
+                    Total = 2000,
+                    Fecha = new DateTime(2021, 5, 16),
+                    ProveedorID = 2
+                },
+                new Compra
+                {
+                    ID = 3,
+                    FormaDePago = 3,
+                    Iva = 5,
+                    Total = 3000,
+                    Fecha = new DateTime(2021, 5, 17),
+                    ProveedorID = 3
+                },
+                new Compra
+                {
+                    ID = 4,
+                    FormaDePago = 4,
+                    Iva = 0,
+                    Total = 4000,
+                    Fecha = new DateTime(2021, 5, 18),
+                    ProveedorID = 4
+                }
+                );
         }
 
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+
+        public DbSet<Compra> Compras { get; set; }
     }
 }
