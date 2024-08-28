@@ -207,12 +207,54 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 10
             }
         );
+
+            //carga de datos semilla de compras
+            modelBuilder.Entity<Compra>().HasData(
+                new Compra
+                {
+                    ID = 1,
+                    FormaDePago = 1,
+                    Iva = 21,
+                    Total = 1000,
+                    Fecha = new DateTime(2021, 5, 15),
+                    ProveedorID = 1
+                },
+                new Compra
+                {
+                    ID = 2,
+                    FormaDePago = 2,
+                    Iva = 10,
+                    Total = 2000,
+                    Fecha = new DateTime(2021, 5, 16),
+                    ProveedorID = 2
+                },
+                new Compra
+                {
+                    ID = 3,
+                    FormaDePago = 3,
+                    Iva = 5,
+                    Total = 3000,
+                    Fecha = new DateTime(2021, 5, 17),
+                    ProveedorID = 3
+                },
+                new Compra
+                {
+                    ID = 4,
+                    FormaDePago = 4,
+                    Iva = 0,
+                    Total = 4000,
+                    Fecha = new DateTime(2021, 5, 18),
+                    ProveedorID = 4
+                }
+            );
+
             //carga de datos semilla de detalle compra
             modelBuilder.Entity<DetalleCompra>().HasData(
                 new DetalleCompra { Id = 1, ProductosId = 1, PrecioUnitario = 2650, Cantidad = 1, CompraId = 1 },
                 new DetalleCompra { Id = 2, ProductosId = 2, PrecioUnitario = 2450, Cantidad = 2, CompraId = 2 },
                 new DetalleCompra { Id = 3, ProductosId = 3, PrecioUnitario = 2550, Cantidad = 1, CompraId = 3 }
                 );
+
         }
 
         public DbSet<Producto> Productos { get; set; }
@@ -222,6 +264,9 @@ namespace KioscoInformatico.DataContext
         public DbSet<Venta> Ventas { get; set; }
 
         public DbSet<Proveedor> Proveedores { get; set; }
+
+
+        public DbSet<Compra> Compras { get; set; }
 
         public DbSet<DetalleCompra> DetallesCompras { get; set; }
 
