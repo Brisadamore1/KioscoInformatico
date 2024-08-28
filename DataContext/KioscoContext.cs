@@ -38,7 +38,7 @@ namespace KioscoInformatico.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //carga de datos semilla
+            //carga de datos semilla Productos
             modelBuilder.Entity<Producto>().HasData(
                 new Producto() { Id= 1, Nombre="Coca Cola 2lts", Precio=2650},
                 new Producto() { Id = 2, Nombre = "Sprite 2lts", Precio = 2450 },
@@ -98,7 +98,7 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 2
             }
             );
-            //Carga de datos semillas
+            //Carga de datos semillas de ventas
             modelBuilder.Entity<Venta>().HasData(
                 new Venta() { Id = 1, 
                             FormaPago = FormaDePagoEnum.Efectivo, 
@@ -109,7 +109,6 @@ namespace KioscoInformatico.DataContext
                 new Venta() { Id = 2, FormaPago = FormaDePagoEnum.Tarjeta_Credito, Iva = 10, Total = 5000m , ClienteId = 2, Fecha = DateTime.Now },
                 new Venta() {Id = 3, FormaPago = FormaDePagoEnum.Tarjeta_Debito, Iva = 21, Total = 8000m, ClienteId = 1, Fecha = DateTime.Now }
             );
-
             //carga de datos semilla de proveedores
             modelBuilder.Entity<Proveedor>().HasData(
             new Proveedor
@@ -213,7 +212,6 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 10
             }
         );
-
             //carga de datos semilla de compras
             modelBuilder.Entity<Compra>().HasData(
                 new Compra
@@ -253,7 +251,6 @@ namespace KioscoInformatico.DataContext
                     ProveedorID = 4
                 }
             );
-
             //carga de datos semilla de detalle compra
             modelBuilder.Entity<DetalleCompra>().HasData(
                 new DetalleCompra { Id = 1, ProductosId = 1, PrecioUnitario = 2650, Cantidad = 1, CompraId = 1 },
@@ -272,14 +269,9 @@ namespace KioscoInformatico.DataContext
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-
         public DbSet<Venta> Ventas { get; set; }
-
         public DbSet<Proveedor> Proveedores { get; set; }
-
-
         public DbSet<Compra> Compras { get; set; }
-
         public DbSet<DetalleCompra> DetallesCompras { get; set; }
         public DbSet<DetalleVenta> DetallesVentas { get; set; }
     }
