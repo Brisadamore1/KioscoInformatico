@@ -4,6 +4,7 @@ using KioscoInformatico.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KioscoInformatico.Migrations
 {
     [DbContext(typeof(KioscoContext))]
-    partial class KioscoContextModelSnapshot : ModelSnapshot
+    [Migration("20240827202052_agregamosProveedores")]
+    partial class agregamosProveedores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,62 +102,6 @@ namespace KioscoInformatico.Migrations
                             LocalidadId = 2,
                             Nombre = "Pedro Fernández",
                             Telefonos = "333444555"
-                        });
-                });
-
-            modelBuilder.Entity("KioscoInformatico.Models.DetalleCompra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompraId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PrecioUnitario")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int?>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductosId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductoId");
-
-                    b.ToTable("DetallesCompras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Cantidad = 1,
-                            CompraId = 1,
-                            PrecioUnitario = 2650m,
-                            ProductosId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Cantidad = 2,
-                            CompraId = 2,
-                            PrecioUnitario = 2450m,
-                            ProductosId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Cantidad = 1,
-                            CompraId = 3,
-                            PrecioUnitario = 2550m,
-                            ProductosId = 3
                         });
                 });
 
@@ -371,52 +318,6 @@ namespace KioscoInformatico.Migrations
                         });
                 });
 
-            modelBuilder.Entity("KioscoInformatico.Models.Venta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("FormaPago")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<decimal>("Iva")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ventas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FormaPago = "Efectivo",
-                            Iva = 21m,
-                            Total = 3000m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FormaPago = "Tarjeta de Crédito",
-                            Iva = 10m,
-                            Total = 5000m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FormaPago = "Tarjeta de Débito",
-                            Iva = 21m,
-                            Total = 8000m
-                        });
-                });
-
             modelBuilder.Entity("KioscoInformatico.Models.Cliente", b =>
                 {
                     b.HasOne("KioscoInformatico.Models.Localidad", "Localidad")
@@ -424,15 +325,6 @@ namespace KioscoInformatico.Migrations
                         .HasForeignKey("LocalidadId");
 
                     b.Navigation("Localidad");
-                });
-
-            modelBuilder.Entity("KioscoInformatico.Models.DetalleCompra", b =>
-                {
-                    b.HasOne("KioscoInformatico.Models.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("KioscoInformatico.Models.Proveedor", b =>
