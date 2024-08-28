@@ -104,7 +104,6 @@ namespace KioscoInformatico.DataContext
                 new Venta() { Id = 3, FormaPago = "Tarjeta de Débito", Iva = 21, Total = 8000m }
             );
 
-                );
             //carga de datos semilla de proveedores
             modelBuilder.Entity<Proveedor>().HasData(
             new Proveedor
