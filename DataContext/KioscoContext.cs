@@ -261,6 +261,12 @@ namespace KioscoInformatico.DataContext
                 new DetalleCompra { Id = 3, ProductosId = 3, PrecioUnitario = 2550, Cantidad = 1, CompraId = 3 }
                 );
 
+            //carga de datos semilla de detalle venta
+            modelBuilder.Entity<DetalleVenta>().HasData(
+                new DetalleVenta { Id = 1, VentaId = 1, ProductoId = 1, Cantidad = 1, PrecioUnitario = 2650 },
+                new DetalleVenta { Id = 2, VentaId = 2, ProductoId = 2, Cantidad = 2, PrecioUnitario = 2450 },
+                new DetalleVenta { Id = 3, VentaId = 3, ProductoId = 3, Cantidad = 1, PrecioUnitario = 2550 }
+                );
         }
 
         public DbSet<Producto> Productos { get; set; }
@@ -275,6 +281,6 @@ namespace KioscoInformatico.DataContext
         public DbSet<Compra> Compras { get; set; }
 
         public DbSet<DetalleCompra> DetallesCompras { get; set; }
-
+        public DbSet<DetalleVenta> DetallesVentas { get; set; }
     }
 }
