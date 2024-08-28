@@ -50,15 +50,15 @@ namespace KioscoInformatico.DataContext
                 );
             //carga de datos semilla de clientes
             modelBuilder.Entity<Cliente>().HasData(
-                            new Cliente
-                            {
-                                Id = 1,
-                                Nombre = "Juan Pérez",
-                                Direccion = "Calle Falsa 123",
-                                Telefonos = "123456789",
-                                FechaNacimiento = new DateTime(1985, 5, 15),
-                                LocalidadId = 1
-                            },
+            new Cliente
+            {
+                Id = 1,
+                Nombre = "Juan Pérez",
+                Direccion = "Calle Falsa 123",
+                Telefonos = "123456789",
+                FechaNacimiento = new DateTime(1985, 5, 15),
+                LocalidadId = 1
+            },
             new Cliente
             {
                 Id = 2,
@@ -95,11 +95,18 @@ namespace KioscoInformatico.DataContext
                 FechaNacimiento = new DateTime(1995, 7, 30),
                 LocalidadId = 2
             }
-                );
+            );
+            //Carga de datos semillas
+            modelBuilder.Entity<Venta>().HasData(
+                new Venta() { Id = 1, FormaPago = "Efectivo", Iva = 21m, Total = 3000m },
+                new Venta() { Id = 2, FormaPago = "Tarjeta de Crédito", Iva = 10, Total = 5000m },
+                new Venta() { Id = 3, FormaPago = "Tarjeta de Débito", Iva = 21, Total = 8000m }
+            );
         }
 
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
     }
 }
