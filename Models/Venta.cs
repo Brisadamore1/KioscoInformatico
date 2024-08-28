@@ -15,7 +15,7 @@ namespace KioscoInformatico.Models
         public FormaDePagoEnum FormaPago { get; set; } = FormaDePagoEnum.Efectivo;
         [Required]
         public int ClienteId { get; set; }
-        public Cliente? cliente { get; set; }
+        public Cliente? Cliente { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
         public decimal Iva { get; set; } = decimal.Zero;
         public decimal Total { get; set; } = decimal.Zero;

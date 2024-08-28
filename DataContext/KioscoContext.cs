@@ -38,7 +38,7 @@ namespace KioscoInformatico.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //carga de datos semilla
+            //carga de datos semilla Productos
             modelBuilder.Entity<Producto>().HasData(
                 new Producto() { Id= 1, Nombre="Coca Cola 2lts", Precio=2650},
                 new Producto() { Id = 2, Nombre = "Sprite 2lts", Precio = 2450 },
@@ -98,13 +98,17 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 2
             }
             );
-            //Carga de datos semillas
+            //Carga de datos semillas de ventas
             modelBuilder.Entity<Venta>().HasData(
-                new Venta() { Id = 1, FormaPago =  FormaDePagoEnum.Efectivo, Iva = 21m, Total = 3000m, ClienteId=1, Fecha=DateTime.Now },
-                new Venta() { Id = 2, FormaPago = FormaDePagoEnum.Transferencia, Iva = 10, Total = 5000m, ClienteId = 2, Fecha = DateTime.Now },
-                new Venta() { Id = 3, FormaPago = FormaDePagoEnum.Tarjeta_Débito, Iva = 21, Total = 8000m, ClienteId = 3, Fecha = DateTime.Now }
+                new Venta() { Id = 1, 
+                            FormaPago = FormaDePagoEnum.Efectivo, 
+                            Iva = 21m, 
+                            Total = 3000m, 
+                            ClienteId=1, 
+                            Fecha=DateTime.Now },
+                new Venta() { Id = 2, FormaPago = FormaDePagoEnum.Tarjeta_Credito, Iva = 10, Total = 5000m , ClienteId = 2, Fecha = DateTime.Now },
+                new Venta() {Id = 3, FormaPago = FormaDePagoEnum.Tarjeta_Debito, Iva = 21, Total = 8000m, ClienteId = 1, Fecha = DateTime.Now }
             );
-
             //carga de datos semilla de proveedores
             modelBuilder.Entity<Proveedor>().HasData(
             new Proveedor
@@ -208,7 +212,6 @@ namespace KioscoInformatico.DataContext
                 LocalidadId = 10
             }
         );
-
             //carga de datos semilla de compras
             modelBuilder.Entity<Compra>().HasData(
                 new Compra
@@ -223,7 +226,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 2,
-                    FormaDePago = FormaDePagoEnum.Tarjeta_Débito,
+                    FormaDePago = FormaDePagoEnum.Tarjeta_Credito,
                     Iva = 10,
                     Total = 2000,
                     Fecha = new DateTime(2021, 5, 16),
@@ -232,7 +235,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 3,
-                    FormaDePago = FormaDePagoEnum.Tarjeta_Débito,
+                    FormaDePago = FormaDePagoEnum.Tarjeta_Debito,
                     Iva = 5,
                     Total = 3000,
                     Fecha = new DateTime(2021, 5, 17),
@@ -241,14 +244,13 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 4,
-                    FormaDePago = FormaDePagoEnum.Tarjeta_Credito,
+                    FormaDePago = FormaDePagoEnum.Efectivo,
                     Iva = 0,
                     Total = 4000,
                     Fecha = new DateTime(2021, 5, 18),
                     ProveedorID = 4
                 }
             );
-
             //carga de datos semilla de detalle compra
             modelBuilder.Entity<DetalleCompra>().HasData(
                 new DetalleCompra { Id = 1, ProductosId = 1, PrecioUnitario = 2650, Cantidad = 1, CompraId = 1 },
@@ -256,18 +258,21 @@ namespace KioscoInformatico.DataContext
                 new DetalleCompra { Id = 3, ProductosId = 3, PrecioUnitario = 2550, Cantidad = 1, CompraId = 3 }
                 );
 
+            //carga de datos semilla de detalle venta
+            modelBuilder.Entity<DetalleVenta>().HasData(
+                new DetalleVenta { Id = 1, VentaId = 1, ProductoId = 1, Cantidad = 1, PrecioUnitario = 2650 },
+                new DetalleVenta { Id = 2, VentaId = 2, ProductoId = 2, Cantidad = 2, PrecioUnitario = 2450 },
+                new DetalleVenta { Id = 3, VentaId = 3, ProductoId = 3, Cantidad = 1, PrecioUnitario = 2550 }
+                );
         }
 
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-
         public DbSet<Venta> Ventas { get; set; }
-
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Compra> Compras { get; set; }
-
         public DbSet<DetalleCompra> DetallesCompras { get; set; }
-
+        public DbSet<DetalleVenta> DetallesVentas { get; set; }
     }
 }

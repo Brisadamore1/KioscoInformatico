@@ -8,9 +8,9 @@ namespace KioscoInformatico.Enum
 {
     public enum FormaDePagoEnum
     {
-        Efectivo = 1,
+        Efectivo,
         Tarjeta_Credito,
-        Tarjeta_Débito,
+        Tarjeta_Debito,
         Transferencia
     }
 }
