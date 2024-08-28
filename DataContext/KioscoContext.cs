@@ -238,7 +238,7 @@ namespace KioscoInformatico.DataContext
                     Fecha = new DateTime(2021, 5, 18),
                     ProveedorID = 4
                 }
-                );
+            );
         }
 
         public DbSet<Producto> Productos { get; set; }
