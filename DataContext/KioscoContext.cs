@@ -1,4 +1,5 @@
-﻿using KioscoInformatico.Enums;
+﻿using KioscoInformatico.Enum;
+using KioscoInformatico.Enums;
 using KioscoInformatico.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -99,9 +100,9 @@ namespace KioscoInformatico.DataContext
             );
             //Carga de datos semillas
             modelBuilder.Entity<Venta>().HasData(
-                new Venta() { Id = 1, FormaPago = "Efectivo", Iva = 21m, Total = 3000m },
-                new Venta() { Id = 2, FormaPago = "Tarjeta de Crédito", Iva = 10, Total = 5000m },
-                new Venta() { Id = 3, FormaPago = "Tarjeta de Débito", Iva = 21, Total = 8000m }
+                new Venta() { Id = 1, FormaPago =  FormaDePagoEnum.Efectivo, Iva = 21m, Total = 3000m, ClienteId=1, Fecha=DateTime.Now },
+                new Venta() { Id = 2, FormaPago = FormaDePagoEnum.Transferencia, Iva = 10, Total = 5000m, ClienteId = 2, Fecha = DateTime.Now },
+                new Venta() { Id = 3, FormaPago = FormaDePagoEnum.Tarjeta_Débito, Iva = 21, Total = 8000m, ClienteId = 3, Fecha = DateTime.Now }
             );
 
             //carga de datos semilla de proveedores
@@ -213,7 +214,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 1,
-                    FormaDePago = 1,
+                    FormaDePago = FormaDePagoEnum.Efectivo,
                     Iva = 21,
                     Total = 1000,
                     Fecha = new DateTime(2021, 5, 15),
@@ -222,7 +223,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 2,
-                    FormaDePago = 2,
+                    FormaDePago = FormaDePagoEnum.Tarjeta_Débito,
                     Iva = 10,
                     Total = 2000,
                     Fecha = new DateTime(2021, 5, 16),
@@ -231,7 +232,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 3,
-                    FormaDePago = 3,
+                    FormaDePago = FormaDePagoEnum.Tarjeta_Débito,
                     Iva = 5,
                     Total = 3000,
                     Fecha = new DateTime(2021, 5, 17),
@@ -240,7 +241,7 @@ namespace KioscoInformatico.DataContext
                 new Compra
                 {
                     ID = 4,
-                    FormaDePago = 4,
+                    FormaDePago = FormaDePagoEnum.Tarjeta_Credito,
                     Iva = 0,
                     Total = 4000,
                     Fecha = new DateTime(2021, 5, 18),
@@ -264,8 +265,6 @@ namespace KioscoInformatico.DataContext
         public DbSet<Venta> Ventas { get; set; }
 
         public DbSet<Proveedor> Proveedores { get; set; }
-
-
         public DbSet<Compra> Compras { get; set; }
 
         public DbSet<DetalleCompra> DetallesCompras { get; set; }

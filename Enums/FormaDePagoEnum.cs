@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace KioscoInformatico.Enum
 {
-    internal class FormaDePagoEnum
+    public enum FormaDePagoEnum
     {
-        public int Efectivo { get; set; }
-        public int Credito { get; set; }
-        public int Debito { get; set; }
-        public int Trasferencia { get; set; }
-        public FormaDePagoEnum() 
-        {
-            Efectivo = 1;
-            Credito = 2;
-            Debito = 3;
-            Trasferencia = 4;
-        }
+        Efectivo = 1,
+        Tarjeta_Credito,
+        Tarjeta_Débito,
+        Transferencia
     }
 }
