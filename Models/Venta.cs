@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KioscoInformatico.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,11 @@ namespace KioscoInformatico.Models
     {
         public int Id { get; set; }
         [Required]
-        public string FormaPago { get; set; } = string.Empty;
+        public FormaDePagoEnum FormaPago { get; set; } = FormaDePagoEnum.Efectivo;
+        [Required]
+        public int ClienteId { get; set; }
+        public Cliente? Cliente { get; set; }
+        public DateTime Fecha { get; set; } = DateTime.Now;
         public decimal Iva { get; set; } = decimal.Zero;
         public decimal Total { get; set; } = decimal.Zero;
     }
